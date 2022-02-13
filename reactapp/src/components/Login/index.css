@@ -4,32 +4,31 @@
   box-sizing: border-box;
 }
 
-input[type=text] {
+input[type="text"] {
   font-size: 1.1em;
-  color:black
+  color: black;
 }
-input[type=password] {
+input[type="password"] {
   font-size: 1.1em;
-  color:black
+  color: black;
 }
-input[type=email] {
+input[type="email"] {
   font-size: 1.1em;
-  color:black
+  color: black;
 }
 form {
   width: 400px;
   margin: 45px auto;
 }
 .heading {
-  color:black;
+  color: black;
   font-weight: 400;
-  
 }
 form h1 {
   font-size: 3em;
   font-weight: 300;
   text-align: center;
-  color: #2196F3;
+  color: #2196f3;
 }
 form h5 {
   text-align: center;
@@ -37,7 +36,7 @@ form h5 {
   color: #c6c6c6;
 }
 form hr.sep {
-  background: #2196F3;
+  background: #2196f3;
   box-shadow: none;
   border: none;
   height: 2px;
@@ -56,6 +55,14 @@ form .emoji {
 textarea {
   resize: none;
 }
+p {
+  float: left;
+  margin-top: -20px;
+  color: red;
+}
+.navigate{
+  color: black;
+}
 
 input,
 textarea {
@@ -72,17 +79,21 @@ textarea {
 input:focus {
   outline: none;
 }
-input:focus ~ label, input:valid ~ label
- {
+input:focus ~ label,
+input:valid ~ label {
   top: -14px;
   font-size: 12px;
-  color: #2196F3;
+  color: #2196f3;
 }
+
 input:focus ~ .bar:before {
   width: 100%;
 }
+::placeholder {
+  letter-spacing: normal;
+}
 
-input[type=password] {
+input[type="password"] {
   letter-spacing: 0.3em;
 }
 
@@ -109,10 +120,12 @@ label {
   width: 0;
   bottom: 0px;
   position: absolute;
-  background: #2196F3;
+  background: #2196f3;
   transition: 300ms ease all;
   left: 0%;
 }
+
+
 
 .btn {
   background: #fff;
@@ -134,14 +147,13 @@ label {
 }
 
 .btn.btn-submit {
-  background: #2196F3;
+  background: #2196f3;
   color: #bce0fb;
 }
 .btn.btn-submit:hover {
   background: #0d8aee;
   color: #deeffd;
 }
-
 
 .btn-box {
   text-align: center;

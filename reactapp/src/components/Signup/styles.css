@@ -83,6 +83,12 @@ textarea:focus ~ .bar:before {
 input[type=password] {
   letter-spacing: 0.3em;
 }
+::placeholder {
+  letter-spacing: normal;
+}
+.navigate{
+  color: #000000;
+}
 
 label {
   color: #414040;
@@ -145,3 +151,4 @@ label {
   text-align: center;
   margin: 50px 0;
 }
+/* new code */
