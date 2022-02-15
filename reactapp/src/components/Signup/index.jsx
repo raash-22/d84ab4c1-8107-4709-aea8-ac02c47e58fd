@@ -12,7 +12,7 @@ export default function Signup() {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +24,10 @@ export default function Signup() {
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
+
+  const handleOnSubmit = () => {
+    console.log(formValues)
+  }
 
   useEffect(() => {
     console.log(formErrors);
@@ -82,6 +86,8 @@ export default function Signup() {
   };
 
   return (
+    <>
+    
     <form onSubmit={handleSubmit}>
       <h1 className="heading">Register</h1>
 
@@ -162,13 +168,18 @@ export default function Signup() {
       <p>{formErrors.confirm_password}</p>
 
       <div className="btn-box">
-        <button className="btn btn-submit" type="submit">
+        <button className="btn btn-submit" type="submit" onClick={handleOnSubmit}>
           submit
         </button>
       </div>
+      {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="ui message success" style={{color : "green",fontWeight: "bolder",fontSize:20}}>Registered successfully!!</div>
+      ) :null
+    }
       <div className="navigate">
         Already a user ? <a href="/login">Login</a>
       </div>
     </form>
+    </>
   );
 }

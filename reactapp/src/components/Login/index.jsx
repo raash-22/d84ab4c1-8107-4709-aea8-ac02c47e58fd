@@ -9,7 +9,7 @@ export default function Login() {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; 
     setFormValues({ ...formValues, [name]: value });
   };
 
@@ -17,8 +17,13 @@ export default function Login() {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    handleOnSubmit();
   };
 
+
+  const handleOnSubmit = () => {
+    console.log(formValues)
+  }
   useEffect(() => {
     console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -61,11 +66,7 @@ export default function Login() {
     <>
 
 
-    {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Signed in successfully</div>
-      ) : (
-        <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-      )}
+    
 
 
     <form onSubmit={handleSubmit}>
@@ -82,7 +83,8 @@ export default function Login() {
       onChange={handleChange}
               
       />
-      <span className="highlight"></span><span className="bar"></span>
+      <span className="highlight"></span>
+      <span className="bar"></span>
       {/* <label>Enter Email</label> */}
     </div>
     <p>{formErrors.email}</p>
@@ -102,8 +104,11 @@ export default function Login() {
     <div className="btn-box">
       <button onClick="removeRequired(this.form)" className="btn btn-submit" type="submit">Login</button>
        </div>
+       {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="ui message success" style={{color: "green",fontWeight:"bolder",fontSize:20}}>Signed in successfully!!</div>
+      ) :null
+    }
     <div className="navigate">New user?  <a href="/signup">Sign Up</a></div>
-
   </form>
   </>
   );
