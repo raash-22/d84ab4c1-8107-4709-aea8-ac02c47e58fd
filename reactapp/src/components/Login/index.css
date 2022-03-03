@@ -59,6 +59,8 @@ p {
   float: left;
   margin-top: -20px;
   color: red;
+  font-weight: bold;
+
 }
 .navigate{
   color: black;
