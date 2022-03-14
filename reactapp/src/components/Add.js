@@ -1,10 +1,23 @@
 import React from "react";
-import { Button,input } from "reactstrap";
+import {Button} from "reactstrap";
+import {ToastContainer,toast} from "react-toastify";
 
 import "./Add.css";
 
 
 const Add=()=>{
+
+  const addbtn=()=>{
+    toast.success("PRODUCT ADDED")
+}
+const updatebtn=()=>{
+  toast.success("PRODUCT UPDATED")
+}
+const delbtn=()=>{
+toast.success("PRODUCT DELETED")
+}
+
+  
 
     return(
         <div>
@@ -14,37 +27,37 @@ const Add=()=>{
             <div>
             <input type="text"
             id="data"
-            placeholder="ENTER PRODUCT NAME"
+            placeholder="ENTER NAME"
             name="pname"
-            required></input><br/>
+            required></input><br/><br/>
 
             <input
             type="number"
             id="data"
-            placeholder="ENTER PRODUCT PRIZE"
+            placeholder="ENTER PRICE"
             name="pprice"
             required
-          ></input><br/>
+          ></input><br/><br/>
 
           <input
             type="url"
             id="data"
-            placeholder="ENTER PRODUCT IMAG-URL"
+            placeholder="ENTER IMAG-URL"
             name="purl"
             required
-          ></input><br/>
+          ></input><br/><br/>
 
           <input
             type="number"
             id="data"
-            placeholder="ENTER PRODUCT QUANTITY"
+            placeholder="ENTER QUANTITY"
             name="pquantity"
             required>
-          </input> <br/>
-           
-          <Button  size="sm">ADD</Button>{' '}
-          <Button  size="sm" >UPDATE</Button>{' '}
-          <Button  size="sm">DELETE</Button>
+          </input> <br/><br/>
+           <ToastContainer/>
+          <Button color="success" size="sm" onClick={addbtn} >ADD</Button>{' '}
+          <Button color="info " size="sm" onClick={updatebtn}>UPDATE</Button>{' '}
+          <Button color="danger" size="sm" onClick={delbtn} >DELETE</Button>
           </div>
 
             
