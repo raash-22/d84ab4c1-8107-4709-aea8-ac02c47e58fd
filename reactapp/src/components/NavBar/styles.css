@@ -1,0 +1,48 @@
+.Navbar {
+  display: flex;
+  flex-direction: row;
+}
+h1 {
+  color: #111;
+  padding-left: 20px;
+  margin-right: 200px;
+}
+
+nav {
+  color: whitesmoke;
+  display: block;
+  margin: 0;
+  overflow: hidden;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+nav ul li {
+  display: inline-block;
+  list-style-type: none;
+  transition: all 0.2s;
+}
+
+nav > ul > li > a {
+  font-weight: 700;
+  color: rgb(5, 5, 5);
+  display: block;
+
+  padding: 0.5em 2em;
+  text-decoration: none;
+}
+
+ul li:hover {
+  padding: 1.05em;
+  background-color: rgb(199, 199, 199);
+}
+ul li .active {
+  color: rgb(8, 4, 241);
+}
