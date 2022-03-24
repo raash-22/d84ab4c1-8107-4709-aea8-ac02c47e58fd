@@ -8,11 +8,12 @@ export const HomePage = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
+    axios.get('http://localhost:8080/Product')
     .then((response) => {
       setProduct(response.data);
       
     });
+   
 
   }, []);
   if(!product)
@@ -24,7 +25,7 @@ export const HomePage = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         {product.map((item) => (
-          <ProductCard id={item.id} name={item.name} price={item.price} image={item.image} />
+          <ProductCard id={item.id} name={item.name} price={item.price} image={item.imageUrl} />
         ))}
       </div>
     </div>
