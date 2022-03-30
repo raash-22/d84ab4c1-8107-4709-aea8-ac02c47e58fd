@@ -1,76 +1,107 @@
-import { Home } from '@mui/icons-material';
-import React, { Component } from 'react'
-import {Navbar,Nav,NavDropdown,Form,FormControl,Button,Container} from 'react-bootstrap'
+import React, {  useState} from 'react'
+import {Navbar,Nav,Button,Container} from 'react-bootstrap'
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	Link,
+	NavLink,
     Navigate
 } from 'react-router-dom';
-
+import './NavbarComp.css';
 import Cart from './Cart';
+import HomePage from './HomePage';
 import MyOrder from './MyOrder';
-import PersonList from './PersonList';
-
-export default class NavbarComp extends Component {
-  render() {
+import AdminReview from './AdminReview';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+export default function NavbarComp () {
+  const [orgcartItems, setOrgcartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const handleAddProduct =(product)=>{
+    const exist = cartItems.find((x) => x.productId === product.productId);
+    if(exist){
+      toast.warning("item already added")
+    }
+    else{
+    toast.success("item added to the cart");
+    orgcartItems.push(product);
+    product.quantity=1;
+    cartItems.push(product);
+    }
+  }
+  const onAdd = (product) => {
+    
+    const exist = cartItems.find((x) => x.productId === product.productId);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.productId === product.productId ? { ...exist, quantity: parseInt(exist.quantity) + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.productId === product.productId);
+    if (exist.quantity === 1) {
+      setCartItems(cartItems.filter((x) => x.productId !== product.productId));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.productId === product.productId ? { ...exist, quantity: parseInt(exist.quantity) - 1 } : x
+        )
+      );
+    }
+  };
+  console.log(cartItems);
     return (
         <Router>
       <div>
-          <Navbar bg="dark" variant='dark' expand="lg">
-    <Container fluid>
-    <Navbar.Brand href="#">FROZEN CUP</Navbar.Brand>
-    <Navbar.Toggle aria-controls="navbarScroll" />
-    <Navbar.Collapse id="navbarScroll">
-      <Nav
-        className="me-auto my-2 my-lg-0"
-        style={{ maxHeight: '100px' }}
-        navbarScroll
-      >
-        <Nav.Link as={Link} to={"/Home"}>Home</Nav.Link>
-        <Nav.Link as={Link} to={"/Cart"}>Cart</Nav.Link>
-        {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action5">
-            Something else here
-          </NavDropdown.Item>
-        </NavDropdown> */}
-        <Nav.Link as={Link} to={"/MyOrder"}>
-          My Order
-        </Nav.Link>
-      </Nav>
-      {/* <Form className="d-flex">
-        <FormControl
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-success">Search</Button>
-      </Form> */}
-      <Button variant="outline-success">Logout</Button>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-      </div>
+      <nav
+      className="Navbar"
+      style={{ backgroundColor: "whitesmoke", boxShadow: 10 }}
+    >
+      <h1>Frozen Cup </h1>
+      <ul>
+        <li>
+          <NavLink to="/Home" activeClassName="active">
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/Cart" activeClassName="active">
+            Cart
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/MyOrder" activeClassName="active">
+            Order
+          </NavLink>
+        </li>
+        <li>
+        <NavLink to="/Review" activeClassName="active">
+            Review
+          </NavLink>
+        </li>
+        <div className='btn'>
+        <button className='button-83'>Logout</button> 
+        </div>
+      </ul>
+      
+    </nav> 
+     </div>
       <div>
-      <Routes>
-          <Route exact path="" element={<Navigate to="/Home"/>}></Route>
-          <Route exact path="/MyOrder" element={< MyOrder />}>
-            {/* <MyOrder></MyOrder> */}
-          </Route>
-          <Route exact path="/Home" element={< PersonList />}>
-            {/* <Home></Home> */}
-          </Route>
-          <Route exact path="/Cart" element={< Cart />}>
-            {/* <Cart></Cart> */}
-          </Route>
+      <Routes cartItems={cartItems} handleAddProduct={handleAddProduct}>
+          <Route path="" element={<Navigate to="/Home"/>}/>
+          <Route path="/MyOrder" element={< MyOrder />}/>
+          <Route path="/Home" element={<HomePage handleAddProduct={handleAddProduct}/>}/>
+          <Route path="/Cart" element={< Cart  cartItems={cartItems} setCartItems={setCartItems} onAdd={onAdd}
+          onRemove={onRemove}/>}/>
+          <Route path="Review" element={<AdminReview/>}/>
         </Routes>
       </div>
       </Router>
     )
   }
-}
