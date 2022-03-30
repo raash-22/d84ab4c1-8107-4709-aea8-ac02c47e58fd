@@ -28,8 +28,8 @@ export default function Cart(props) {
               <div className="cartcard" style={{ width:"30rem",padding:"10px"}}>
               <img src={item.imageUrl} className="cartcard-img-top" style={{ width: 80, height: 80, borderRadius: "6px" }}/>
               <div className="cartcard-body">
-              <h5 className="cartcard-title">{item.productName}</h5>
-              <h5 className="cartcard-price">₹{item.price}</h5>
+              <h4 className="cartcard-title">{item.productName}</h4>
+              <h4 className="cartcard-price">₹{item.price}</h4>
             
        </div>
        <div>{item.quantity}</div>
