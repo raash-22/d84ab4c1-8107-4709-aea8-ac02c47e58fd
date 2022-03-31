@@ -8,9 +8,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Cart from './Cart';
 toast.configure()
 export default function HomePage( {handleAddProduct}){
-  const baseURL='http://localhost:8080/Product';
+  const baseURL='http://localhost:8080/products/home';
   const [products, setProducts] = useState([]);
-  
   
   useEffect(() => {
     axios.get(baseURL).then((response) => {

@@ -94,6 +94,7 @@ export default function NavbarComp () {
      </div>
       <div>
       <Routes cartItems={cartItems} handleAddProduct={handleAddProduct}>
+        
           <Route path="" element={<Navigate to="/Home"/>}/>
           <Route path="/MyOrder" element={< MyOrder />}/>
           <Route path="/Home" element={<HomePage handleAddProduct={handleAddProduct}/>}/>
