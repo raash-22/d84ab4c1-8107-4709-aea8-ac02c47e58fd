@@ -18,23 +18,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginModel>checkUser(@RequestBody LoginModel loginModel){
-        /*LoginModel lm=loginService.findByEmail(loginModel.getEmail());
-        String passwordExists=lm.getPassword();
-        String enteredPassword=loginModel.getPassword();
-        String enteredEmail=loginModel.getEmail();
-        String mailExists=lm.getEmail();
-        if(lm.getEmail().isEmpty()){
-            return new ResponseEntity<LoginModel>(HttpStatus.NOT_FOUND);
-        }
-        else if(passwordExists.equals(enteredPassword)){
-            return new ResponseEntity<LoginModel>(HttpStatus.OK);
-        }
-        else if(mailExists.equals(enteredEmail)){
-            return new ResponseEntity<LoginModel>(HttpStatus.NOT_FOUND);
-        }
-        else{
-            return new ResponseEntity<LoginModel>(HttpStatus.NOT_FOUND);
-        }*/
         LoginModel loginModel1=loginService.findByEmail(loginModel.getEmail());
         if(loginModel1==null){
             return new ResponseEntity<LoginModel>(HttpStatus.NOT_FOUND);
